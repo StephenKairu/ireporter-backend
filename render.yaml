@@ -8,8 +8,8 @@ services:
   - type: web
     name: ireporter_backend_render
     env: ruby
-    buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    buildCommand: "./render-build.sh"
+    startCommand: "bundle exec rails s"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
