@@ -12,7 +12,6 @@ User.create!(
     email: "jane@gmail.com",
     role: 'citizen',
     password: "Jane",
-    password_confirmation: "Jane"
 )
 
 User.create!(
@@ -20,7 +19,6 @@ User.create!(
     email: "johndoe@gmail.com",
     role: 'citizen',
     password: "1234",
-    password_confirmation: "1234"
 )
 
 User.create!(
@@ -28,5 +26,19 @@ User.create!(
     email: "admin@chiriku.com",
     role: 'admin',
     password: "admin1234",
-    password_confirmation: "admin1234"
 )
+
+
+# class CreateUsers < ActiveRecord::Migration[7.0]
+#     def change
+#       create_table :users do |t|
+#         t.string :username
+#         t.string :email
+#         t.string :role
+#         t.string :password_digest
+#         t.binary :avatar
+  
+#         t.timestamps
+#       end
+#     end
+#   end
