@@ -28,6 +28,27 @@ User.create!(
     password: "admin1234",
 )
 
+User.create!(
+    username: "Mary",
+    email: "mary@gmail.com",
+    role: 'citizen',
+    password: "mary",
+)
+
+User.create!(
+    username: "Halkano",
+    email: "halkano@gmail.com",
+    role: 'citizen',
+    password: "halkano",
+)
+
+User.create!(
+    username: "Felix",
+    email: "felix@chiriku.com",
+    role: 'citizen',
+    password: "felix",
+)
+
 
 # class CreateUsers < ActiveRecord::Migration[7.0]
 #     def change
