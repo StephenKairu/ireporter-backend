@@ -13,7 +13,12 @@ class ReportsController < ApplicationController
     end 
     def create 
         report = Report.create!(reports_params) 
-        render json: report, status: :created
+        if report
+            render json: ReportSerializer.new(report).serializable_hash[:data][:attributes], status: :created
+        else
+            render json: report.errors, status: :unprocessable_entity
+        # render json: report (include: [:evidence_urls]), status: :created
+        end
     end 
     def update 
         report = report_params 

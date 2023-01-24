@@ -41,3 +41,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "jsonapi-serializer", "~> 2.2"
