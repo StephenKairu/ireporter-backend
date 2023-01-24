@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
         Report.find(params[:id])
     end
     def reports_params
-        params.permit(:report_title, :report_message, :report_category, :evidence[], :report_status, :report_address, :user_id )
+        params.require(:report).permit(:report_title, :report_message, :report_category, :report_status, :report_address, :user_id, evidence: [] )
     end
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
