@@ -5,19 +5,23 @@ class ReportsController < ApplicationController
     skip_before_action :authorize, only: [:index, :show, :create, :destroy, :update]
 
     def index 
-        render json: Report.all
+        reports= Report.all
+        render json: reports
+        # render json: ReportSerializer.new(reports).to_json
     end 
-    def show 
+
+    def show
         report = report_params 
         render json: report, status: :ok
     end 
     def create 
         report = Report.create!(reports_params) 
+        # render json: report (include: [:evidence_urls]), status: :created
         if report
             render json: ReportSerializer.new(report).serializable_hash[:data][:attributes], status: :created
         else
             render json: report.errors, status: :unprocessable_entity
-        # render json: report (include: [:evidence_urls]), status: :created
+        
         end
     end 
     def update 
