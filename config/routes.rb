@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  resources :reports, only: [:index, :show, :create, :update, :destroy]
+  resources :alerts, only: [:index, :show, :create, :update]
+  # resources :alerts
+  # resources :reports
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_22_164043) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_024657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,10 +42,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_164043) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "alerts", force: :cascade do |t|
+    t.string "title"
+    t.string "message"
+    t.string "image", default: "https://img.freepik.com/free-vector/loudspeaker-megaphone-with-lightings-red_1284-58706.jpg?size=626&ext=jpg&ga=GA1.2.790298598.1667807727&semt=sph"
+    t.float "lat"
+    t.float "lng"
+    t.string "status", default: "Under investigation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "report_id"
+    t.index ["report_id"], name: "index_alerts_on_report_id"
+    t.index ["user_id"], name: "index_alerts_on_user_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "report_title"
+    t.string "report_message"
+    t.string "report_image", default: "https://img.freepik.com/free-photo/african-woman-hold-small-kenya-flag-hands_627829-10813.jpg?size=626&ext=jpg&ga=GA1.2.790298598.1667807727"
+    t.string "report_status", default: "Pending"
+    t.string "report_address"
+    t.string "report_category", default: "Intervention"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "role"
+    t.string "role", default: "citizen"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,4 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_164043) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "alerts", "reports"
+  add_foreign_key "alerts", "users"
+  add_foreign_key "reports", "users"
 end

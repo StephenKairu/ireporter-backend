@@ -3,10 +3,18 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # For url_for helper to give full url for files uploaded Active-Storage
+  Rails.application.routes.default_url_options = {
+    host: 'http://localhost:3000'
+  }  
+
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+
+  # uploading files will be stored locally
+  config.active_storage.service = :local
 
   # Do not eager load code on boot.
   config.eager_load = false
