@@ -1,5 +1,10 @@
 require "active_support/core_ext/integer/time"
 
+# For url_for helper to give full url for files uploaded Active-Storage
+Rails.application.routes.default_url_options = {
+  host: 'https://ireporter-backend-render.onrender.com'
+} 
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
